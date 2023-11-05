@@ -1,5 +1,7 @@
 import './index.css'
 import {AiFillStar} from 'react-icons/ai'
+import {MdLocationOn} from 'react-icons/md'
+import {BsBriefcaseFill} from 'react-icons/bs'
 
 const SimilarJobsCard = props => {
   const {similarJob} = props
@@ -34,8 +36,12 @@ const SimilarJobsCard = props => {
       <h1>Description</h1>
       <p className="similarJobs-description">{jobDescription}</p>
       <div>
-        <p>{location}</p>
-        <p>{employmentType}</p>
+        <div className="location-items-container">
+          <MdLocationOn className="location-icon-similar" />
+          <p className="locationStyle-similar">{location}</p>
+          <BsBriefcaseFill className="location-icon-similar" />
+          <p className="locationStyle-similar">{employmentType}</p>
+        </div>
       </div>
     </div>
   )

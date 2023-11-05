@@ -6,8 +6,7 @@
   align-items: center;
   padding-left: 40px;
   padding-right: 40px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  height: 15%;
   position: fixed; /* This makes the navbar fixed */
   top: 0; /* It sticks to the top of the viewport */
   left: 0; /* You can also adjust left/right positioning as needed */
@@ -16,27 +15,36 @@
   z-index: 0; /* Use z-index to control the stacking order if needed */
 }
 
-.header-heads-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 60%;
+.header-list-container {
+  list-style-type: none;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
+.header-heads-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 130px;
+}
+
 .header-heads-text {
   font-size: 18px;
+  color: white;
   text-decoration: none;
 }
 
+.home-logo {
+  width: 60%;
+}
 .home-jobs {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 25%;
 }
 .logout-button {
   background-color: #6366f1;
@@ -72,6 +80,8 @@
   .header-heads-container {
     width: 40%;
     margin-left: 10px;
+    justify-content: space-around;
+    width: 120px;
   }
   .home-jobs {
     width: 60%;

@@ -124,8 +124,8 @@ class JobItemDetails extends Component {
               <div>
                 <img
                   src={companyLogoUrl}
-                  alt={title}
-                  className="job details company logo"
+                  alt="job details company logo"
+                  className="company-logo"
                 />
               </div>
               <div className="only-title-rating-container">
@@ -172,7 +172,7 @@ class JobItemDetails extends Component {
                         alt={eachSkill.name}
                         className="skills-image"
                       />
-                      <h1>{eachSkill.name}</h1>
+                      <h1 className="skill-heading-style">{eachSkill.name}</h1>
                     </div>
                   </li>
                 ))}

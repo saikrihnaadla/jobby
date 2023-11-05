@@ -1,7 +1,7 @@
 .JobDetails-bg-Container {
   background-color: black;
   min-height: 100vh;
-  padding-top: 110px;
+  padding-top: 120px;
   padding-left: 30px;
   padding-right: 30px;
 }
@@ -26,16 +26,19 @@
 .eachSkill-container {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-  margin-right: 60px;
+  margin-right: 50px;
   margin-top: 10px;
   margin-bottom: 30px;
   font-family: roboto;
   margin-left: 0px;
+
+  width: 200px;
 }
 
 .skills-image {
-  width: 40%;
+  width: 20%;
   margin-right: 10px;
 }
 
@@ -95,4 +98,33 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+@media screen and (max-width: 576px) {
+  .JobDetails-bg-Container {
+    padding-top: 140px;
+  }
+
+  .life-at-company-bg-container {
+    flex-direction: column;
+  }
+  .skills-image {
+    width: 15%;
+  }
+  .eachSkill-container {
+    margin-right: 0px;
+    width: 120px;
+    padding-right: 0px;
+  }
+
+  .skills-bg-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .skill-heading-style {
+    font-size: 10px;
+    margin-right: 0px;
+  }
 }

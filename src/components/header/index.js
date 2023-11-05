@@ -16,19 +16,19 @@ const Header = props => {
 
   return (
     <nav className="header-container">
-      <ul>
+      <ul className="header-list-container">
         <li>
           <Link to="/">
             <img
               src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
               alt="website logo"
-              className="website logo"
+              className="home-logo"
             />
           </Link>
         </li>
         <li>
           <div className="header-heads-container">
-            <div className="home-jobs">
+            <div>
               <Link to="/" className="unText-decoration">
                 <p className="header-heads-text">Home</p>
                 <AiFillHome className="mobileView-icons" />
