@@ -1,0 +1,21 @@
+.image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ops-style {
+  font-size: 34px;
+  font-weight: 500;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.looking-for {
+  color: #64748b;
+  margin-top: 0px;
+  padding-top: 0px;
+}
+.failure-image {
+  width: 80%;
+}

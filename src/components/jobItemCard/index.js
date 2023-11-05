@@ -19,8 +19,8 @@ const JobItemCard = props => {
 
   const onClickItemId = () => {}
   return (
-    <Link to={`/jobs/${id}`}>
-      <li onClick={onClickItemId}>
+    <Link to={`/jobs/${id}`} className="unText-decoration">
+      <li onClick={onClickItemId} className="unText-decoration">
         <div className="job-card-container">
           <div className="logo-and-title-container">
             <div>

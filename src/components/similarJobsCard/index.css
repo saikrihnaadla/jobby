@@ -1,0 +1,12 @@
+.similar-card-container {
+  background-color: #202020;
+  margin: 20px;
+  width: 40%;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.similarJobs-description {
+  color: white;
+  font-size: 12px;
+}

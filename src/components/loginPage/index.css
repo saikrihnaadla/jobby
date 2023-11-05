@@ -17,6 +17,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-left: 30px;
+}
+
+label {
+  color: white;
 }
 
 .login-input-style {

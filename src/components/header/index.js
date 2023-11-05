@@ -11,43 +11,50 @@ const Header = props => {
   const onClickLogout = () => {
     const {history} = props
     Cookies.remove('jwt_token')
-    history.replace('/')
-  }
-  const OnclickLogo = () => {
-    const {history} = props
-    history.replace('/')
+    history.replace('/login')
   }
 
   return (
     <nav className="header-container">
-      <img
-        src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-        alt="website logo"
-        className="login-logo-style"
-        onClick={OnclickLogo}
-      />
-      <div className="header-heads-container">
-        <div className="home-jobs">
+      <ul>
+        <li>
           <Link to="/">
-            <h1 className="header-heads-text">Home</h1>
-            <AiFillHome className="mobileView-icons" />
+            <img
+              src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
+              alt="website logo"
+              className="website logo"
+            />
           </Link>
-          <Link to="/jobs">
-            <h1 className="header-heads-text">Jobs</h1>
-            <BsBriefcaseFill className="mobileView-icons" />
-          </Link>
-        </div>
-        <div>
-          <button
-            className="logout-button"
-            type="button"
-            onClick={onClickLogout}
-          >
-            Logout
-          </button>
-          <FiLogOut className="mobileView-icons" onClick={onClickLogout} />
-        </div>
-      </div>
+        </li>
+        <li>
+          <div className="header-heads-container">
+            <div className="home-jobs">
+              <Link to="/" className="unText-decoration">
+                <p className="header-heads-text">Home</p>
+                <AiFillHome className="mobileView-icons" />
+              </Link>
+            </div>
+            <div>
+              <Link to="/jobs" className="unText-decoration">
+                <p className="header-heads-text">Jobs</p>
+                <BsBriefcaseFill className="mobileView-icons" />
+              </Link>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <button
+              className="logout-button"
+              type="button"
+              onClick={onClickLogout}
+            >
+              Logout
+            </button>
+            <FiLogOut className="mobileView-icons" onClick={onClickLogout} />
+          </div>
+        </li>
+      </ul>
     </nav>
   )
 }

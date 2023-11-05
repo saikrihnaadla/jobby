@@ -1,13 +1,98 @@
 .JobDetails-bg-Container {
   background-color: black;
   min-height: 100vh;
-  padding-top: 100px;
+  padding-top: 110px;
   padding-left: 30px;
   padding-right: 30px;
-  padding-bottom: 20px;
 }
 
 .job-item-details-card-container {
   background-color: #272727;
   border-radius: 10px;
+}
+
+.skills-main-bg-container {
+  margin-top: 40px;
+  padding-left: 0px;
+}
+.skills-bg-container {
+  list-style-type: none;
+  padding-left: 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 0px;
+}
+.eachSkill-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 60px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-family: roboto;
+  margin-left: 0px;
+}
+
+.skills-image {
+  width: 40%;
+  margin-right: 10px;
+}
+
+.skills-heading-style {
+  font-size: 18px;
+}
+
+.life-at-company-bg-container {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  padding-top: 0px;
+}
+.description-and-visit-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.life-at-company-style {
+  margin-top: 50px;
+  font-size: 22px;
+  font-family: roboto;
+}
+
+.visit-style {
+  color: #b6c5ff;
+  text-decoration: none;
+}
+
+.failure-retry-button {
+  background-color: #6366f1;
+  height: 40px;
+  width: 136px;
+  color: white;
+  border-radius: 5px;
+  border-width: 0px;
+}
+
+.failure-bg-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.similarCards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

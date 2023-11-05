@@ -60,26 +60,28 @@ class LoginPage extends Component {
             <div className="login-logo-container">
               <img
                 src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-                alt="logo"
+                alt="website logo"
                 className="login-logo-style"
               />
             </div>
             <div>
-              <h1>USERNAME</h1>
+              <label htmlFor="USERNAME">USERNAME</label>
               <input
                 type="input"
                 className="login-input-style"
                 placeholder="UserName"
                 value={username}
                 onChange={this.onChangeUserName}
+                id="USERNAME"
               />
-              <h1>PASSWORD</h1>
+              <label htmlFor="PASSWORD">PASSWORD</label>
               <input
-                type="input"
+                type="password"
                 className="login-input-style"
                 placeholder="password"
                 onChange={this.onChangePassword}
                 value={password}
+                id="PASSWORD"
               />
             </div>
             <div className="button-container">

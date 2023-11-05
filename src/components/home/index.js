@@ -9,7 +9,7 @@ const Home = () => (
       <div className="homepage-heads-para-container">
         <h1 className="find-jobs-heading">Find The Job That Fits Your Life</h1>
         <p className="home-page-para">
-          Millions of people searching for a jobs,salary, information, company
+          Millions of people are searching for jobs,salary, information, company
           reviews. Find the job that fits your abilities and potential
         </p>
         <Link to="/jobs">

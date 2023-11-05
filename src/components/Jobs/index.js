@@ -1,9 +1,17 @@
 import {Component} from 'react'
 import './index.css'
+import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import {BiSearch} from 'react-icons/bi'
 import Header from '../header'
 import JobItemCard from '../jobItemCard'
+
+const jobsApiStatusConstants = {
+  initial: 'INITIAL',
+  loading: 'LOADING',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+}
 
 const employmentTypesList = [
   {
@@ -51,6 +59,7 @@ class Jobs extends Component {
     checkBoxValues: [],
     salaryRangeValue: '',
     searchInput: '',
+    jobsApiStatus: jobsApiStatusConstants.initial,
   }
 
   componentDidMount() {
@@ -102,6 +111,8 @@ class Jobs extends Component {
   // https://apis.ccbp.in/jobs?employment_type=FULLTIME,PARTTIME&minimum_package=1000000&search='
 
   getJobsList = async () => {
+    this.setState({jobsApiStatus: jobsApiStatusConstants.loading})
+
     const {checkBoxValues, salaryRangeValue, searchInput} = this.state
     const emplyomentTypeValues = checkBoxValues.join(',')
     console.log(emplyomentTypeValues)
@@ -119,7 +130,10 @@ class Jobs extends Component {
       const jobsData = await response.json()
       const jobsUpdatedData = this.updateToClientDataFormat(jobsData.jobs)
 
-      this.setState({jobsList: jobsUpdatedData})
+      this.setState({
+        jobsList: jobsUpdatedData,
+        jobsApiStatus: jobsApiStatusConstants.success,
+      })
     } else {
       console.log('error')
     }
@@ -164,118 +178,144 @@ class Jobs extends Component {
     }
   }
 
-  render() {
+  SuccessViewRender = () => {
     const {jobsList, profileDetails, isProfileSuccess, searchInput} = this.state
     const {name, profileImageUrl, shortBio} = profileDetails
-
     return (
-      <div className="jobs-bg-container">
-        <Header />
-        <div className="jobs-content-container">
-          <div className="profile-sorting-container">
-            <div className="search-input-container search-bar-1">
-              <input
-                type="search"
-                className="search-input-style"
-                onChange={this.onChangeSearchInput}
-                value={searchInput}
+      <div className="jobs-content-container">
+        <div className="profile-sorting-container">
+          <div className="search-input-container search-bar-1">
+            <input
+              type="search"
+              className="search-input-style"
+              onChange={this.onChangeSearchInput}
+              value={searchInput}
+            />
+            <button
+              onClick={this.onSubmitSearchInput}
+              type="button"
+              className="searchIcon-button"
+              onKeyDown={this.onSubmitEnter}
+            >
+              <BiSearch className="search-bar" />
+            </button>
+          </div>
+          {isProfileSuccess && (
+            <div className="profile-bg-container">
+              <img
+                alt="profile"
+                className="profile-Image"
+                src={profileImageUrl}
               />
+              <h1>{name}</h1>
+              <p>{shortBio}</p>
+            </div>
+          )}
+          {!isProfileSuccess && (
+            <div className="retry-container ">
               <button
-                onClick={this.onSubmitSearchInput}
+                className="retry-button"
                 type="button"
-                className="searchIcon-button"
-                onKeyDown={this.onSubmitEnter}
+                onClick={this.getProfileDetails}
               >
-                <BiSearch className="search-bar" />
+                Retry
               </button>
             </div>
-            {isProfileSuccess && (
-              <div className="profile-bg-container">
-                <img
-                  alt="profile"
-                  className="profile-Image"
-                  src={profileImageUrl}
-                />
-                <h1>{name}</h1>
-                <p>{shortBio}</p>
-              </div>
-            )}
-            {!isProfileSuccess && (
-              <div className="retry-container ">
-                <button
-                  className="retry-button"
-                  type="button"
-                  onClick={this.getProfileDetails}
-                >
-                  Retry
-                </button>
-              </div>
-            )}
+          )}
 
-            <hr />
-            <div className="all-check-box-container">
-              <h1 className="type-employment-head">Type of Employment</h1>
-              {employmentTypesList.map(eachObject => (
+          <hr />
+          <div className="all-check-box-container">
+            <h1 className="type-employment-head">Type of Employment</h1>
+            {employmentTypesList.map(eachObject => (
+              <div className="checkBox-container">
+                <input
+                  type="checkbox"
+                  id={eachObject.employmentTypeId}
+                  value={eachObject.employmentTypeId}
+                  onChange={this.getCheckBoxValue}
+                />
+                <label
+                  htmlFor={eachObject.employmentTypeId}
+                  className="checkbox-label"
+                >
+                  {eachObject.label}
+                </label>
+              </div>
+            ))}
+          </div>
+          <hr />
+          <div>
+            <h1 className="type-employment-head">Salary Range</h1>
+            <form id="radioForm">
+              {salaryRangesList.map(eachObject => (
                 <div className="checkBox-container">
                   <input
-                    type="checkbox"
-                    id={eachObject.employmentTypeId}
-                    value={eachObject.employmentTypeId}
-                    onChange={this.getCheckBoxValue}
+                    type="radio"
+                    id={eachObject.salaryRangeId}
+                    name="options"
+                    onChange={this.getRadioButtonValue}
                   />
-                  <label
-                    htmlFor={eachObject.employmentTypeId}
-                    className="checkbox-label"
-                  >
+                  <label htmlFor="10Lpa" className="checkbox-label">
                     {eachObject.label}
                   </label>
                 </div>
               ))}
-            </div>
-            <hr />
-            <div>
-              <h1 className="type-employment-head">Salary Range</h1>
-              <form id="radioForm">
-                {salaryRangesList.map(eachObject => (
-                  <div className="checkBox-container">
-                    <input
-                      type="radio"
-                      id={eachObject.salaryRangeId}
-                      name="options"
-                      onChange={this.getRadioButtonValue}
-                    />
-                    <label htmlFor="10Lpa" className="checkbox-label">
-                      {eachObject.label}
-                    </label>
-                  </div>
-                ))}
-              </form>
-            </div>
-          </div>
-          <div className="jobs-container">
-            <div className="search-input-container search-bar-2">
-              <input
-                type="search"
-                className="search-input-style"
-                onChange={this.onChangeSearchInput}
-                value={searchInput}
-                onKeyDown={this.onSubmitEnter}
-              />
-              <button
-                onClick={this.onSubmitSearchInput}
-                type="button"
-                className="searchIcon-button"
-              >
-                <BiSearch className="search-bar" />
-              </button>
-            </div>
-            <ul className="unOrder-list-con">
-              {jobsList.map(eachObject => (
-                <JobItemCard jobDetails={eachObject} key={eachObject.id} />
-              ))}
-            </ul>
+            </form>
           </div>
         </div>
+        <div className="jobs-container">
+          <div className="search-input-container search-bar-2">
+            <input
+              type="search"
+              className="search-input-style"
+              onChange={this.onChangeSearchInput}
+              value={searchInput}
+              onKeyDown={this.onSubmitEnter}
+            />
+            <button
+              onClick={this.onSubmitSearchInput}
+              type="button"
+              className="searchIcon-button"
+            >
+              <BiSearch className="search-bar" />
+            </button>
+          </div>
+          <ul className="unOrder-list-con">
+            {jobsList.map(eachObject => (
+              <JobItemCard jobDetails={eachObject} key={eachObject.id} />
+            ))}
+          </ul>
+        </div>
+      </div>
+    )
+  }
+
+  loaderRenderView = () => (
+    <div className="loader-container">
+      <div className="loader-container" data-testid="loader">
+        <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+      </div>
+    </div>
+  )
+
+  switchingJobsPageRenderViews = () => {
+    const {jobsApiStatus} = this.state
+
+    switch (jobsApiStatus) {
+      case jobsApiStatusConstants.success:
+        return this.SuccessViewRender()
+      case jobsApiStatusConstants.loading:
+        return this.loaderRenderView()
+      default:
+        return null
+    }
+  }
+
+  render() {
+    return (
+      <div className="jobs-bg-container">
+        <Header />
+        {this.switchingJobsPageRenderViews()}
       </div>
     )
   }
