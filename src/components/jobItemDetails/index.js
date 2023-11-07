@@ -143,7 +143,7 @@ class JobItemDetails extends Component {
                 <BsBriefcaseFill className="location-icon" />
                 <p className="locationStyle">{employmentType}</p>
               </div>
-              <h1 className="package">{packagePerAnnum}</h1>
+              <p className="package">{packagePerAnnum}</p>
             </div>
             <div>
               <hr />
@@ -189,11 +189,11 @@ class JobItemDetails extends Component {
         </div>
         <div>
           <h1>Similar Jobs</h1>
-          <div className="similarCards-container">
+          <ul className="similarCards-container">
             {similarJobsDetails.map(eachItem => (
               <SimilarJobsCard similarJob={eachItem} key={eachItem.id} />
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     )

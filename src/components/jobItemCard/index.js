@@ -17,14 +17,17 @@ const JobItemCard = props => {
     id,
   } = jobDetails
 
-  const onClickItemId = () => {}
   return (
     <Link to={`/jobs/${id}`} className="unText-decoration">
-      <li onClick={onClickItemId} className="unText-decoration">
+      <div className="unText-decoration">
         <div className="job-card-container">
           <div className="logo-and-title-container">
             <div>
-              <img src={companyLogoUrl} alt={title} className="company-logo" />
+              <img
+                src={companyLogoUrl}
+                alt="company logo"
+                className="company-logo"
+              />
             </div>
             <div className="only-title-rating-container">
               <h1 className="job-title">{title}</h1>
@@ -49,7 +52,7 @@ const JobItemCard = props => {
             <p className="description">{jobDescription}</p>
           </div>
         </div>
-      </li>
+      </div>
     </Link>
   )
 }

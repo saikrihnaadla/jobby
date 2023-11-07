@@ -16,12 +16,12 @@ const SimilarJobsCard = props => {
   } = similarJob
 
   return (
-    <div className="similar-card-container">
+    <li className="similar-card-container">
       <div className="logo-and-title-container">
         <div>
           <img
             src={companyLogoUrl}
-            alt={similarJob.title}
+            alt="similar job company logo"
             className="company-logo"
           />
         </div>
@@ -43,7 +43,7 @@ const SimilarJobsCard = props => {
           <p className="locationStyle-similar">{employmentType}</p>
         </div>
       </div>
-    </div>
+    </li>
   )
 }
 

@@ -8,7 +8,9 @@ const FailureRender = () => (
       className="failure-image"
     />
     <h1 className="ops-style">Oops! Something went wrong</h1>
-    <p className="looking-for">We Cant seem the page you are looking for</p>
+    <p className="looking-for">
+      We cannot seem to find the page you are looking for
+    </p>
   </div>
 )
 
