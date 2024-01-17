@@ -1,23 +1,68 @@
 .jobs-bg-container {
   background-color: #000000;
-  min-height: 100vh;
 }
 .jobs-content-container {
   display: flex;
   flex-direction: row;
-  margin-top: 80px;
-  padding: 20px;
+  margin-top: 48px;
+  padding-top: 20px;
+  padding-right: 0px;
+}
+.jobs-container {
+  width: 100%;
+  padding-top: 20px;
+  padding-left: 40px;
+
+  height: 90vh;
+  overflow-x: auto;
+  padding-right: 40px;
 }
 .unOrder-list-con {
   list-style-type: none;
   padding: 0px;
 }
-.profile-sorting-container {
-  width: 33%;
-  min-height: 100vh;
-  padding: 20px;
+.profile-filter-bg-container {
+  height: 90vh;
+
+  overflow-x: auto;
+  width: 30%;
+  padding-right: 10px;
+  margin-left: 40px;
 }
 
+.profile-sorting-container {
+  height: 100%;
+  padding-right: 10px;
+}
+::-webkit-scrollbar {
+  width: 0px;
+}
+.profile-filter-bg-container::-webkit-scrollbar {
+  width: 1px;
+}
+.profile-filter-bg-container::-webkit-scrollbar-thumb {
+  background-color: #6366f1;
+  border-radius: 80px;
+}
+/* .profile-filter-bg-container::-webkit-scrollbar-thumb:hover {
+  background-color: green;
+  width: 30px;
+} */
+.profile-filter-bg-container::-webkit-scrollbar-thumb:active {
+  background-color: green;
+}
+::-webkit-scrollbar-track {
+  background-color: #272727;
+}
+
+.jobs-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.jobs-container::-webkit-scrollbar-thumb {
+  background-color: #6366f1;
+  border-radius: 80px;
+}
 .profile-bg-container {
   background-image: url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
   background-size: cover;
@@ -61,10 +106,6 @@ ul {
 .jobs-input-style {
   width: 136px;
   height: 36px;
-}
-.jobs-container {
-  width: 100%;
-  padding: 20px;
 }
 
 .profile-Image {
@@ -182,6 +223,21 @@ hr {
   }
   .search-bar-1 {
     margin-bottom: 20px;
+    width: auto;
+  }
+  .profile-filter-bg-container {
+    overflow: unset;
+    width: 96%;
+    padding-left: 10px;
+    height: 100%;
+    margin-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+  }
+  .jobs-container {
+    overflow: unset;
+    height: 100%;
+    padding: 20px;
   }
 }
 @media screen and (min-width: 576px) {

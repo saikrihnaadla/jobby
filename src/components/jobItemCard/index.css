@@ -4,6 +4,7 @@
   padding: 30px;
   border-radius: 10px;
   text-decoration: none;
+  border: 1px solid #475569;
 }
 .logo-and-title-container {
   display: flex;

@@ -4,11 +4,14 @@
   padding-top: 120px;
   padding-left: 30px;
   padding-right: 30px;
+  margin-bottom: 0px;
+  padding-bottom: 10px;
 }
 
 .job-item-details-card-container {
   background-color: #272727;
   border-radius: 10px;
+  border: 0;
 }
 
 .skills-main-bg-container {
@@ -97,7 +100,11 @@
 .similarCards-container {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   flex-wrap: wrap;
+  list-style-type: none;
+  padding-left: 0px;
+  width: 100%;
 }
 
 @media screen and (max-width: 576px) {

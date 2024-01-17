@@ -1,9 +1,12 @@
 .similar-card-container {
   background-color: #202020;
-  margin: 20px;
-  width: 40%;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  width: 300px;
   border-radius: 10px;
   padding: 20px;
+  height: 400px;
+  border: 1px solid #475569;
 }
 
 .similarJobs-description {

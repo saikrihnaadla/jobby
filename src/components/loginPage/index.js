@@ -69,7 +69,7 @@ class LoginPage extends Component {
               <input
                 type="input"
                 className="login-input-style"
-                placeholder="UserName"
+                placeholder="rahul"
                 value={username}
                 onChange={this.onChangeUserName}
                 id="USERNAME"
@@ -78,7 +78,7 @@ class LoginPage extends Component {
               <input
                 type="password"
                 className="login-input-style"
-                placeholder="password"
+                placeholder="rahul@2021"
                 onChange={this.onChangePassword}
                 value={password}
                 id="PASSWORD"

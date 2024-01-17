@@ -14,6 +14,12 @@ const jobsApiStatusConstants = {
   failure: 'FAILURE',
 }
 
+const profileApiStatusConstants = {
+  initial: 'INITIAL',
+  loading: 'LOADING',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+}
 const employmentTypesList = [
   {
     label: 'Full Time',
@@ -61,12 +67,12 @@ class Jobs extends Component {
     salaryRangeValue: '',
     searchInput: '',
     jobsApiStatus: jobsApiStatusConstants.initial,
-    profileApiStatus: jobsApiStatusConstants.initial,
+    profileApiStatus: profileApiStatusConstants.initial,
   }
 
   componentDidMount() {
-    this.getProfileDetails()
     this.getJobsList()
+    this.getProfileDetails()
   }
 
   updateToClientDataFormat = myArray => {
@@ -93,7 +99,7 @@ class Jobs extends Component {
   }
 
   getProfileDetails = async () => {
-    this.setState({profileApiStatus: jobsApiStatusConstants.loading})
+    this.setState({profileApiStatus: profileApiStatusConstants.loading})
     const url = ' https://apis.ccbp.in/profile'
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -108,13 +114,12 @@ class Jobs extends Component {
       const profileD = this.updateProfileData(data.profile_details)
       this.setState({
         profileDetails: profileD,
-        profileApiStatus: jobsApiStatusConstants.success,
+        profileApiStatus: profileApiStatusConstants.success,
       })
     } else {
-      this.setState({profileApiStatus: jobsApiStatusConstants.failure})
+      this.setState({profileApiStatus: profileApiStatusConstants.failure})
     }
   }
-  // https://apis.ccbp.in/jobs?employment_type=FULLTIME,PARTTIME&minimum_package=1000000&search='
 
   getJobsList = async () => {
     this.setState({jobsApiStatus: jobsApiStatusConstants.loading})
@@ -180,7 +185,6 @@ class Jobs extends Component {
   }
 
   radioButtonValue = event => {
-    event.preventDefault()
     const radioValue = event.target.id
     this.setState({salaryRangeValue: radioValue}, this.getJobsList)
   }
@@ -203,9 +207,9 @@ class Jobs extends Component {
     return (
       <ul className="unOrder-list-con">
         {jobsList.map(eachObject => (
-          <l1 key={eachObject.id}>
+          <li key={eachObject.id}>
             <JobItemCard jobDetails={eachObject} />
-          </l1>
+          </li>
         ))}
       </ul>
     )
@@ -220,7 +224,7 @@ class Jobs extends Component {
         <button
           className="retry-button"
           type="button"
-          onClick={this.getJobsList}
+          onClick={this.getProfileDetails}
         >
           Retry
         </button>
@@ -268,13 +272,12 @@ class Jobs extends Component {
 
   switchingProfileRenderViews = () => {
     const {profileApiStatus} = this.state
-
     switch (profileApiStatus) {
-      case jobsApiStatusConstants.success:
+      case profileApiStatusConstants.success:
         return this.profileSuccessViewRender()
-      case jobsApiStatusConstants.loading:
+      case profileApiStatusConstants.loading:
         return this.profileLoaderRenderView()
-      case jobsApiStatusConstants.failure:
+      case profileApiStatusConstants.failure:
         return this.profileFailureRenderView()
       default:
         return null
@@ -297,89 +300,93 @@ class Jobs extends Component {
   }
 
   render() {
-    const {searchInput, salaryRangeValue} = this.state
+    const {searchInput} = this.state
 
     return (
       <div className="jobs-bg-container">
         <Header />
         <div className="jobs-content-container">
-          <ul className="profile-sorting-container">
-            <li className="search-input-container search-bar-1">
-              <input
-                type="search"
-                className="search-input-style"
-                onChange={this.onChangeSearchInput}
-                value={searchInput}
-              />
-              <button
-                onClick={this.onSubmitSearchInput}
-                type="button"
-                className="searchIcon-button"
-                onKeyDown={this.onSubmitEnter}
-                data-testid="searchButton"
-              >
-                <BiSearch className="search-bar" />
-              </button>
-            </li>
-            <li className="profile-div">
-              {this.switchingProfileRenderViews()}
-            </li>
-            <hr />
-            <li className="all-check-box-container">
-              <h1 className="type-employment-head">Type of Employment</h1>
-              <ul>
-                {employmentTypesList.map(eachObject => (
-                  <li
-                    className="checkBox-container"
-                    onClick={this.OnclickPara}
-                    key={eachObject.label}
-                    id={eachObject.label}
-                  >
-                    <nav>
-                      <input
-                        type="checkbox"
-                        id={eachObject.employmentTypeId}
-                        value={eachObject.employmentTypeId}
-                        onChange={this.getCheckBoxValue}
-                      />
-                      <label
-                        htmlFor={eachObject.employmentTypeId}
-                        className="checkbox-label"
-                      >
-                        {eachObject.label}
-                      </label>
-                    </nav>
-                  </li>
-                ))}
-              </ul>
-            </li>
-            <hr />
-            <li>
-              <h1 className="type-employment-head">Salary Range</h1>
-              <form id="radioForm" type="submit">
+          <div className="profile-filter-bg-container">
+            <ul className="profile-sorting-container">
+              <li className="search-input-container search-bar-1">
+                <input
+                  type="search"
+                  className="search-input-style"
+                  onChange={this.onChangeSearchInput}
+                  value={searchInput}
+                />
+                <button
+                  onClick={this.onSubmitSearchInput}
+                  type="button"
+                  className="searchIcon-button"
+                  onKeyDown={this.onSubmitEnter}
+                  data-testid="searchButton"
+                >
+                  <BiSearch className="search-bar" />
+                </button>
+              </li>
+              <li className="profile-div">
+                {this.switchingProfileRenderViews()}
+              </li>
+              <hr />
+              <li className="all-check-box-container">
+                <h1 className="type-employment-head">Type of Employment</h1>
                 <ul>
-                  {salaryRangesList.map(eachObject => (
-                    <li className="checkBox-container">
-                      <input
-                        type="radio"
-                        id={eachObject.salaryRangeId}
-                        name="options"
-                        onChange={this.radioButtonValue}
-                        value={salaryRangeValue}
-                        key={eachObject.salaryRangeId}
-                      />
-                      <label
-                        htmlFor={eachObject.salaryRangeId}
-                        className="checkbox-label"
-                      >
-                        {eachObject.label}
-                      </label>
+                  {employmentTypesList.map(eachObject => (
+                    <li
+                      className="checkBox-container"
+                      onClick={this.OnclickPara}
+                      key={eachObject.label}
+                      id={eachObject.label}
+                    >
+                      <nav>
+                        <input
+                          type="checkbox"
+                          id={eachObject.employmentTypeId}
+                          value={eachObject.employmentTypeId}
+                          onChange={this.getCheckBoxValue}
+                        />
+                        <label
+                          htmlFor={eachObject.employmentTypeId}
+                          className="checkbox-label"
+                        >
+                          {eachObject.label}
+                        </label>
+                      </nav>
                     </li>
                   ))}
                 </ul>
-              </form>
-            </li>
-          </ul>
+              </li>
+              <hr />
+              <li>
+                <h1 className="type-employment-head">Salary Range</h1>
+                <form id="radioForm" type="submit">
+                  <ul>
+                    {salaryRangesList.map(eachObject => (
+                      <li
+                        className="checkBox-container"
+                        key={eachObject.salaryRangeId}
+                      >
+                        <input
+                          type="radio"
+                          name="options"
+                          onChange={this.radioButtonValue}
+                          value={this.salaryRangeId}
+                          id={eachObject.salaryRangeId}
+                        />
+                        <label
+                          htmlFor={eachObject.salaryRangeId}
+                          className="checkbox-label"
+                        >
+                          {eachObject.label}
+                        </label>
+                      </li>
+                    ))}
+                  </ul>
+                </form>
+              </li>
+            </ul>
+          </div>
           <div className="jobs-container">
             <div className="search-input-container search-bar-2">
               <input
@@ -401,7 +408,6 @@ class Jobs extends Component {
             {this.switchingJobsRenderView()}
           </div>
         </div>
-        )
       </div>
     )
   }

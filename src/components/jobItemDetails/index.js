@@ -191,7 +191,9 @@ class JobItemDetails extends Component {
           <h1>Similar Jobs</h1>
           <ul className="similarCards-container">
             {similarJobsDetails.map(eachItem => (
-              <SimilarJobsCard similarJob={eachItem} key={eachItem.id} />
+              <li key={eachItem.id}>
+                <SimilarJobsCard similarJob={eachItem} />
+              </li>
             ))}
           </ul>
         </div>
